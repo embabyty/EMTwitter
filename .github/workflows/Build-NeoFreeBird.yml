@@ -22,11 +22,6 @@ on:
         default: ""
         required: false
         type: string
-      tweak_commit:
-        description: "(Optional) Commit for tweak repo"
-        default: ""
-        required: false
-        type: string
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -43,17 +38,8 @@ jobs:
       - name: Checkout main repo
         uses: actions/checkout@v4
         with:
-          repository: NeoFreeBird/app
           path: main
           ref: ${{ inputs.repo_commit || github.ref }}
-          submodules: recursive
-
-      - name: Checkout tweak repo (NeoFreeBird/tweak)
-        uses: actions/checkout@v4
-        with:
-          repository: NeoFreeBird/tweak
-          path: tweak
-          ref: ${{ inputs.tweak_commit || 'refs/heads/master' }}
           submodules: recursive
 
       - name: Install Dependencies
@@ -98,7 +84,7 @@ jobs:
 
       - name: Build tweak with Theos
         run: |
-          cd tweak
+          cd main/tweak
           sed -i '' "s/^TARGET.*$/TARGET := iphone:clang:${{ inputs.sdk_version }}:${{ inputs.target_version }}/" Makefile
           make package
         env:
@@ -107,7 +93,7 @@ jobs:
       - name: Copy deb to main/packages
         run: |
          mkdir -p main/packages
-         find tweak -type f -name "*.deb" -exec cp {} main/packages/ \;
+         find main/tweak -type f -name "*.deb" -exec cp {} main/packages/ \;
          echo "Files in main/packages after copy:"
          ls -lh main/packages
 
