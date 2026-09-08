@@ -18,6 +18,8 @@ on:
         default: ""
         required: false
         type: string
+  schedule:
+    - cron: "0 6 * * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,6 +29,7 @@ jobs:
   build-and-inject:
     name: Build NeoFreeBird
     runs-on: macos-13
+    timeout-minutes: 120
     permissions:
       contents: write
 
