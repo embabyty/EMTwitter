@@ -66,7 +66,6 @@ jobs:
           echo "$X_VERSION"
 
       - name: Download iOS SDK
-        if: steps.SDK.outputs.cache-hit != 'true'
         run: |
           git clone -n --depth=1 --filter=tree:0 https://github.com/theos/sdks/
           cd sdks
@@ -75,6 +74,14 @@ jobs:
           mv ./*.sdk "${THEOS}/sdks"
         env:
           THEOS: ${{ github.workspace }}/theos
+
+      - name: Cache iOS SDK
+        uses: actions/cache@v4
+        with:
+          path: theos/sdks/iPhoneOS${{ inputs.sdk_version }}.sdk
+          key: ios-sdk-${{ inputs.sdk_version }}-${{ hashFiles('.github/workflows/Build-NeoFreeBird.yml') }}
+          restore-keys: |
+            ios-sdk-${{ inputs.sdk_version }}-
 
       - name: Build tweak with Theos
         run: |
