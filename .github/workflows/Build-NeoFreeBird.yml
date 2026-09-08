@@ -3,10 +3,6 @@ name: Build NeoFreeBird
 on:
   workflow_dispatch:
     inputs:
-      decrypted_ipa_url:
-        description: "Direct URL of the decrypted Twitter/X ipa"
-        required: true
-        type: string
       sdk_version:
         description: "iOS SDK Version for Theos"
         default: "16.5"
@@ -19,11 +15,6 @@ on:
         type: string
       repo_commit:
         description: "(Optional) Commit for main repo (patches)"
-        default: ""
-        required: false
-        type: string
-      tweak_commit:
-        description: "(Optional) Commit for tweak repo"
         default: ""
         required: false
         type: string
@@ -43,17 +34,8 @@ jobs:
       - name: Checkout main repo
         uses: actions/checkout@v4
         with:
-          repository: NeoFreeBird/app
           path: main
           ref: ${{ inputs.repo_commit || github.ref }}
-          submodules: recursive
-
-      - name: Checkout tweak repo (NeoFreeBird/tweak)
-        uses: actions/checkout@v4
-        with:
-          repository: NeoFreeBird/tweak
-          path: tweak
-          ref: ${{ inputs.tweak_commit || 'refs/heads/master' }}
           submodules: recursive
 
       - name: Install Dependencies
@@ -76,14 +58,12 @@ jobs:
 
       - name: Prepare Twitter/X iPA
         run: |
-          wget "$IPA_URL" --no-verbose -O main/packages/com.atebits.Tweetie2.ipa
+          wget "https://archive.org/download/x-11.30.1/com.atebits.Tweetie2-11.30.1-Decrypted.ipa" --no-verbose -O main/packages/com.atebits.Tweetie2.ipa
           unzip -q main/packages/com.atebits.Tweetie2.ipa -d main/tmp
           X_VERSION=$(grep -A 1 '<key>CFBundleShortVersionString</key>' main/tmp/Payload/Twitter.app/Info.plist |
             grep '<string>' | awk -F'[><]' '{print $3}')
           echo "X_VERSION=${X_VERSION}" >> "$GITHUB_ENV"
           echo "$X_VERSION"
-        env:
-          IPA_URL: ${{ inputs.decrypted_ipa_url }}
 
       - name: Download iOS SDK
         if: steps.SDK.outputs.cache-hit != 'true'
@@ -98,7 +78,7 @@ jobs:
 
       - name: Build tweak with Theos
         run: |
-          cd tweak
+          cd main/tweak
           sed -i '' "s/^TARGET.*$/TARGET := iphone:clang:${{ inputs.sdk_version }}:${{ inputs.target_version }}/" Makefile
           make package
         env:
@@ -107,7 +87,7 @@ jobs:
       - name: Copy deb to main/packages
         run: |
          mkdir -p main/packages
-         find tweak -type f -name "*.deb" -exec cp {} main/packages/ \;
+         find main/tweak -type f -name "*.deb" -exec cp {} main/packages/ \;
          echo "Files in main/packages after copy:"
          ls -lh main/packages
 
