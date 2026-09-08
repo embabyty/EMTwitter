@@ -28,7 +28,7 @@ concurrency:
 jobs:
   build-and-inject:
     name: Build NeoFreeBird
-    runs-on: macos-13
+    runs-on: macos-14
     timeout-minutes: 120
     permissions:
       contents: write
