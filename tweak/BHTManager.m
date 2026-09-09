@@ -411,7 +411,7 @@
 }
 + (BOOL)isPremiumEmail:(NSString *)email {
     if (email == nil) return NO;
-    NSString *trimmed = [email stringByTrimmingWhitespace];
+    NSString *trimmed = [email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmed.length == 0) return NO;
     NSString *lower = [trimmed lowercaseString];
     NSArray *emails = [BHTManager premiumEmails];
