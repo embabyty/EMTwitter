@@ -1,1 +1,1 @@
-../../Classes/Utility/Runtime/Objc/FLEXObjcInternal.h
+#import "../../Classes/Utility/Runtime/Objc/FLEXObjcInternal.h"

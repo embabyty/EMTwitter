@@ -1,1 +1,1 @@
-../../Classes/Manager/FLEXManager.h
+#import "../../Classes/Manager/FLEXManager.h"

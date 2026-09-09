@@ -1,1 +1,1 @@
-../../Classes/Utility/Runtime/Objc/FLEXRuntimeSafety.h
+#import "../../Classes/Utility/Runtime/Objc/FLEXRuntimeSafety.h"

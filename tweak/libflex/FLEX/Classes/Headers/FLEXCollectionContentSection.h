@@ -1,1 +1,1 @@
-../../Classes/ObjectExplorers/Sections/FLEXCollectionContentSection.h
+#import "../../Classes/ObjectExplorers/Sections/FLEXCollectionContentSection.h"

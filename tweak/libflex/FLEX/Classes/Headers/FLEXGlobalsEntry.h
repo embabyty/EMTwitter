@@ -1,1 +1,1 @@
-../../Classes/GlobalStateExplorers/Globals/FLEXGlobalsEntry.h
+#import "../../Classes/GlobalStateExplorers/Globals/FLEXGlobalsEntry.h"

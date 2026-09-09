@@ -1,1 +1,1 @@
-../../Classes/Utility/Runtime/Objc/FLEXTypeEncodingParser.h
+#import "../../Classes/Utility/Runtime/Objc/FLEXTypeEncodingParser.h"

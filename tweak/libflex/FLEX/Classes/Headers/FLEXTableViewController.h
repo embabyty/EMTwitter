@@ -1,1 +1,1 @@
-../../Classes/Core/Controllers/FLEXTableViewController.h
+#import "../../Classes/Core/Controllers/FLEXTableViewController.h"
