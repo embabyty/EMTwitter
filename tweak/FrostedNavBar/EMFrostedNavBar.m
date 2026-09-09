@@ -411,11 +411,11 @@ static const NSInteger kEMFrostedNavBarTag = 910; // 909 = padlock, 9001 = copy 
             [tabBar performSelector:@selector(setSelectedViewController:) withObject:target];
         } else if (idx < tabs.count) {
             T1TabView *tab = tabs[idx];
-            if ([tab respondsToSelector:@selector(setSelected:)]) [tab setSelected:YES];
+            if ([tab respondsToSelector:@selector(setSelected:)]) [(id)tab setSelected:YES];
         }
     } else if (idx < tabs.count) {
         T1TabView *tab = tabs[idx];
-        if ([tab respondsToSelector:@selector(setSelected:)]) [tab setSelected:YES];
+        if ([tab respondsToSelector:@selector(setSelected:)]) [(id)tab setSelected:YES];
     }
 
     [[NSNotificationCenter defaultCenter]
