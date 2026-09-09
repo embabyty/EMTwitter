@@ -109,8 +109,8 @@ jobs:
           rsync -av "${PATCH_SRC}/" main/tmp/Payload/Twitter.app/
           fi
     
-          # Find the .deb file in main/packages
-          DEB_FILE=$(find main/packages -name "*.deb" -type f | head -n1)
+          # Find the .deb file in main/packages (absolute path, since we cd later)
+          DEB_FILE=$(find "$GITHUB_WORKSPACE/main/packages" -name "*.deb" -type f | head -n1)
           if [ -z "$DEB_FILE" ]; then
           echo "❌ No .deb file found in main/packages"
           exit 1
