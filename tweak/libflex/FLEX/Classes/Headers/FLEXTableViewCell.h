@@ -1,1 +1,1 @@
-../../Classes/Core/Views/Cells/FLEXTableViewCell.h
+#import "../../Classes/Core/Views/Cells/FLEXTableViewCell.h"

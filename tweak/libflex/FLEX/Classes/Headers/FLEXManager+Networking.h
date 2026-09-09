@@ -1,1 +1,1 @@
-../../Classes/Manager/FLEXManager+Networking.h
+#import "../../Classes/Manager/FLEXManager+Networking.h"

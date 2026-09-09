@@ -1,1 +1,1 @@
-../../Classes/Utility/FLEXResources.h
+#import "../../Classes/Utility/FLEXResources.h"

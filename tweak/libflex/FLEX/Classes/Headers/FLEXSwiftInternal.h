@@ -1,1 +1,1 @@
-../../Classes/Utility/Runtime/Objc/FLEXSwiftInternal.h
+#import "../../Classes/Utility/Runtime/Objc/FLEXSwiftInternal.h"

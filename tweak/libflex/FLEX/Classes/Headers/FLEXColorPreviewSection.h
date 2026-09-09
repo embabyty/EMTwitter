@@ -1,1 +1,1 @@
-../../Classes/ObjectExplorers/Sections/FLEXColorPreviewSection.h
+#import "../../Classes/ObjectExplorers/Sections/FLEXColorPreviewSection.h"

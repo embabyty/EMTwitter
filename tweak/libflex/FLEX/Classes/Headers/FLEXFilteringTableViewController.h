@@ -1,1 +1,1 @@
-../../Classes/Core/Controllers/FLEXFilteringTableViewController.h
+#import "../../Classes/Core/Controllers/FLEXFilteringTableViewController.h"

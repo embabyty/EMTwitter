@@ -1,1 +1,1 @@
-../../Classes/ObjectExplorers/Sections/Shortcuts/FLEXShortcut.h
+#import "../../Classes/ObjectExplorers/Sections/Shortcuts/FLEXShortcut.h"

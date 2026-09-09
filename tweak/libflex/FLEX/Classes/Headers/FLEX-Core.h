@@ -1,1 +1,1 @@
-../../Classes/FLEX-Core.h
+#import "../../Classes/FLEX-Core.h"
